@@ -1,0 +1,6 @@
+@Aizen.Modules.GameStore_HostAddress = http://localhost:5176
+
+GET {{Aizen.Modules.GameStore_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

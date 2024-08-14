@@ -1,0 +1,6 @@
+@Aizen.Modules.Notification_HostAddress = http://localhost:5091
+
+GET {{Aizen.Modules.Notification_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

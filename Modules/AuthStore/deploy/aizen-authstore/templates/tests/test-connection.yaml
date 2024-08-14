@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "aizen-authstore.fullname" . }}-test-connection"
+  labels:
+    {{- include "aizen-authstore.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ include "aizen-authstore.fullname" . }}:{{ .Values.service.port }}']
+  restartPolicy: Never

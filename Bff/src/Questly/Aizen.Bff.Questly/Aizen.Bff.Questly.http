@@ -1,0 +1,6 @@
+@Aizen.Bff.Questly_HostAddress = http://localhost:5079
+
+GET {{Aizen.Bff.Questly_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
