@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+		<PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
+	</ItemGroup>
+	
+  <ItemGroup>
+    <ProjectReference Include="..\Aizen.Core.Serialization.Abstraction\Aizen.Core.Serialization.Abstraction.csproj" />
+  </ItemGroup>
+
 </Project>
