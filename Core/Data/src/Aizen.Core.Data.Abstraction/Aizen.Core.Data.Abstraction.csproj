@@ -5,5 +5,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\src\Aizen.Core.Common\Aizen.Core.Common.csproj" />
+  </ItemGroup>
+  
 </Project>

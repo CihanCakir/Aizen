@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MiniUow" Version="3.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\IOC\src\Aizen.Core.IOC.Abstraction\Aizen.Core.IOC.Abstraction.csproj" />
+  </ItemGroup>
+
 </Project>
