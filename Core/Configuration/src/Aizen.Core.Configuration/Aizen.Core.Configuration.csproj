@@ -6,4 +6,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Aizen.Core.Configuration.Abstraction\Aizen.Core.Configuration.Abstraction.csproj" />
+  </ItemGroup>
 </Project>

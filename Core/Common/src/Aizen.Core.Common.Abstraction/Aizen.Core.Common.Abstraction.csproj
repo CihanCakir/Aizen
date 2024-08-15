@@ -6,4 +6,11 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+		<PackageReference Include="LinqKit" Version="1.3.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="NLocalizator" Version="1.0.7" />
+    <PackageReference Include="Newtonsoft.Json.Schema" Version="4.0.1" />
+	</ItemGroup>
+
 </Project>
