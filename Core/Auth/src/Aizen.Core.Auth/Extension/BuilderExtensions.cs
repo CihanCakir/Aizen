@@ -16,9 +16,9 @@ namespace Aizen.Core.Infrastructure.Auth.Extension
     {
         public static IServiceCollection AddAizenAuth<TUser, TRole, TContext>(
             this IServiceCollection services, WebApplicationBuilder builder)
-            where TUser : IdentityUser<int>
-            where TRole : IdentityRole<int>
-            where TContext : IdentityDbContext<TUser, TRole, int>
+            where TUser : IdentityUser<long>
+            where TRole : IdentityRole<long>
+            where TContext : IdentityDbContext<TUser, TRole, long>
         {
 
             if (services == null)
@@ -39,13 +39,13 @@ namespace Aizen.Core.Infrastructure.Auth.Extension
 
             builder.Services.AddIdentity<TUser, TRole>(opts =>
                 {
-                    opts.User.RequireUniqueEmail = false;
-                    opts.User.AllowedUserNameCharacters = "0123456789";
-                    opts.Password.RequiredLength = 6;
-                    opts.Password.RequireNonAlphanumeric = false;
-                    opts.Password.RequireLowercase = false;
-                    opts.Password.RequireUppercase = false;
-                    opts.Password.RequireDigit = true;
+                    opts.User.RequireUniqueEmail = true; // E-posta adreslerinin benzersiz olması gerekiyor
+    opts.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+"; // Kullanıcı adında e-posta için gerekli olan karakterler kullanılabilir
+                    opts.Password.RequiredLength = 6; // Parolanın en az 6 karakterden oluşması gerekiyor
+                    opts.Password.RequireNonAlphanumeric = false; // Parolada sembol kullanımı zorunlu değil
+                    opts.Password.RequireLowercase = true; // Parolada en az bir küçük harf bulunmalı
+                    opts.Password.RequireUppercase = true; // Parolada en az bir büyük harf bulunmalı
+                    opts.Password.RequireDigit = true; // Parolada en az bir rakam bulunmalı
                 })
                  .AddErrorDescriber<AizenCustomIdentityErrorDescriber>()
                  .AddEntityFrameworkStores<TContext>().AddDefaultTokenProviders();

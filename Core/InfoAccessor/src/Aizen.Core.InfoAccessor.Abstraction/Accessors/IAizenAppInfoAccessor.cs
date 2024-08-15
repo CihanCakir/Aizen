@@ -11,7 +11,8 @@ public enum AppType
     Gateway,
     Bff,
     Worker,
-    Scheduler
+    Scheduler,
+    Operation
 }
 
 public class AizenAppInfo : IAizenInfo
@@ -20,6 +21,8 @@ public class AizenAppInfo : IAizenInfo
 
     public AppType Type { get; set; } 
     public string Name { get; set; } 
+        public List<AppType> TypeInclude { get; set; } = new List<AppType>();
+
     public bool IdentityInclude { get; set; } 
     public string GroupName { get; set; }
     public string GroupColor { get; set; }
