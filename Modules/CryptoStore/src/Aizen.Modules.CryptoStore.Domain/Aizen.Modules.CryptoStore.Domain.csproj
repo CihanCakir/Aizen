@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  
+  <ItemGroup>
+		<ProjectReference Include="..\Aizen.Modules.CryptoStore.Abstraction\Aizen.Modules.CryptoStore.Abstraction.csproj" />
+		<ProjectReference Include="..\..\..\..\Core\Domain\src\Aizen.Core.Domain\Aizen.Core.Domain.csproj" />
+    <ProjectReference Include="..\..\..\..\Core\Data\src\Aizen.Core.Data.Mongo\Aizen.Core.Data.Mongo.csproj" />
+    <ProjectReference Include="..\..\..\..\Core\EventStore\src\Aizen.Core.EventStore\Aizen.Core.EventStore.csproj" />
+  </ItemGroup>
+
+
 </Project>

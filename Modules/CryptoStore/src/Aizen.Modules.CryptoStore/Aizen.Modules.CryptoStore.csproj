@@ -7,8 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.4" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <ProjectReference Include="..\..\..\..\Core\Starter\src\Aizen.Core.Starter\Aizen.Core.Starter.csproj" />
+    <ProjectReference Include="..\Aizen.Modules.CryptoStore.Application\Aizen.Modules.CryptoStore.Application.csproj" />
   </ItemGroup>
+
 
 </Project>

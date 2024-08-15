@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+
+  <ItemGroup>
+		<ProjectReference Include="..\Aizen.Modules.CryptoStore.Repository\Aizen.Modules.CryptoStore.Repository.csproj" />
+  </ItemGroup>
+
 </Project>
