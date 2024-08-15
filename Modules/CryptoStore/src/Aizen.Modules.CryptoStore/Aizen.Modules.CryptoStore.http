@@ -1,0 +1,6 @@
+@Aizen.Modules.CryptoStore_HostAddress = http://localhost:5293
+
+GET {{Aizen.Modules.CryptoStore_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

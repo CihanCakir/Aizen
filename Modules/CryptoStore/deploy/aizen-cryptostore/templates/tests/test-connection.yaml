@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "aizen-cryptostore.fullname" . }}-test-connection"
+  labels:
+    {{- include "aizen-cryptostore.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ include "aizen-cryptostore.fullname" . }}:{{ .Values.service.port }}']
+  restartPolicy: Never
