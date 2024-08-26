@@ -8,8 +8,9 @@ public class AizenUserEntity : IdentityUser<long>
     public string? Name { get; set; }
     public string? Surname { get; set; }
 
-
+    public long RoleId { get; set; }
+    public virtual AizenRoleEntity Role { get; set; }
+    
     public virtual ICollection<UserApplicationProfileEntity>? ApplicationProfiles { get; set; }
-
 }
 

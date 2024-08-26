@@ -1,0 +1,12 @@
+{
+    "Swooply" : {
+        "Authentication":{
+            "BusinessErrors":{
+                "LoginFailed":{
+                    "Code":"SWOOPLY-1001",
+                    "Message":"Kullanıcı adı veya şifre hatalı"
+                }
+            }
+        }
+    }
+}
