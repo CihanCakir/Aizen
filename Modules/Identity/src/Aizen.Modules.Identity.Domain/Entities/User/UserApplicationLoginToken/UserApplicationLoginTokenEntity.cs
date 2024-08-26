@@ -16,7 +16,7 @@ public class UserApplicationLoginTokenEntity : AizenEntityWithAudit
         public long ApplicationId { get; set; }
         public ApplicationEntity? Application { get; set; }
 
-        public long UserId { get; set; }
-        public AizenUserEntity? User { get; set; }
+    public long ProfileId { get; set; }
+    public UserApplicationProfileEntity? Profile { get; set; }
 
 }

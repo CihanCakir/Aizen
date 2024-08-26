@@ -7,10 +7,10 @@ public class UserApplicationReportEntity : AizenEntityWithAudit
     public DateTime ReportDate { get; set; }
 
     public long ReportedByUserId { get; set; }
-    public AizenUserEntity? ReportedByUser { get; set; }
+    public UserApplicationProfileEntity? ReportedByUser { get; set; }
 
     public long ReportedUserId { get; set; }
-    public AizenUserEntity? ReportedUser { get; set; }
+    public UserApplicationProfileEntity? ReportedUser { get; set; }
 
 
 

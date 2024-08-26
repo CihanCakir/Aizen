@@ -7,4 +7,11 @@ namespace Aizen.Modules.Identity.Abstraction.Enum
         Block,
         Delete
     }
+    
+    public enum ApplicationAccountVerificationStatu
+    {
+        Verify,
+        NoVerify,
+        Direct
+    }
 }

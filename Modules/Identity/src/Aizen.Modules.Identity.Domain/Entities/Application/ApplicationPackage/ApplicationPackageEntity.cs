@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Aizen.Core.Domain;
 
 namespace Aizen.Modules.Identity.Domain.Entities
@@ -15,7 +11,8 @@ namespace Aizen.Modules.Identity.Domain.Entities
         public int DurationInDays { get; set; }
         public bool IsActive { get; set; }
 
-
+        public virtual ICollection<ApplicationCountryPriceEntity>? CountryPrices { get; set; }
+        public ICollection<ApplicationFeatureMappingEntity>? PackageFeatures { get; set; }
 
         public long ApplicationId { get; set; }
         public ApplicationEntity? Application { get; set; }

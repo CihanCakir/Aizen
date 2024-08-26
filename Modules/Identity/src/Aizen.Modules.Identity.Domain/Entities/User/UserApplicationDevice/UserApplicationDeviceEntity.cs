@@ -1,8 +1,10 @@
 using Aizen.Core.Domain;
+using Aizen.Modules.Identity.Abstraction.Enum;
 
 namespace Aizen.Modules.Identity.Domain.Entities;
 public class UserApplicationDeviceEntity : AizenEntityWithAudit
 {
+    public ApplicationPlatform Platform { get; set; }
     public string? NotificationToken { get; set; }
     public string? DeviceId { get; set; }
     public bool DeviceStatus { get; set; }
@@ -13,8 +15,8 @@ public class UserApplicationDeviceEntity : AizenEntityWithAudit
     public long ApplicationId { get; set; }
     public ApplicationEntity? Application { get; set; }
 
-    public long UserId { get; set; }
-    public AizenUserEntity? User { get; set; }
+    public long ProfileId { get; set; }
+    public UserApplicationProfileEntity? Profile { get; set; }
 
 
     public virtual ICollection<UserApplicationLoginTokenEntity>? LoginTokens { get; set; }

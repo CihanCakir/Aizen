@@ -16,10 +16,10 @@ namespace Aizen.Modules.Identity.Domain.Entities
 
 
 
-    public long ApplicationId { get; set; }
-    public ApplicationEntity? Application { get; set; }
+        public long ApplicationId { get; set; }
+        public ApplicationEntity? Application { get; set; }
 
-    public long UserId { get; set; }
-    public AizenUserEntity? User { get; set; }
-        }
+    public long ProfileId { get; set; }
+    public UserApplicationProfileEntity? Profile { get; set; }
+    }
 }

@@ -10,12 +10,13 @@ namespace Aizen.Modules.Identity.Domain.Entities
     {
         public string? Name { get; set; }
         public string? Description { get; set; }
+        public string? Code { get; set; }
 
+        public bool IsForAdult { get; set; }
         public long TenantId { get; set; }
         public TenantEntity? Tenant { get; set; }
 
         public virtual ICollection<ApplicationRuleEntity>? Rules { get; set; }
-        public virtual ICollection<ApplicationVersionEntity>? Versions { get; set; }
         public virtual ICollection<ApplicationPackageEntity>? Packages { get; set; }
     }
 }
