@@ -18,4 +18,8 @@ namespace Aizen.Modules.Identity.Abstraction.Enum
         Publish,
         Revoke
     }
+    public enum ApplicationPlatformType{
+        Web,
+        Mobil
+    }
 }
