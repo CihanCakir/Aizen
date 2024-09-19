@@ -7,7 +7,7 @@ namespace Aizen.Modules.Identity.Repository.Context
 {
     public class AizenIdentityDbContext : IdentityDbContext<AizenUserEntity, AizenRoleEntity, long>
     {
-        #region [APPLICATON]
+        #region [APPLICATION]
         public DbSet<ApplicationEntity> Applications { get; set; }
         public DbSet<ApplicationRuleEntity> ApplicationRules { get; set; }
 

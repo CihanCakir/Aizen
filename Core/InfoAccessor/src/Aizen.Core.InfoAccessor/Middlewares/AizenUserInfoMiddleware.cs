@@ -102,10 +102,10 @@ namespace Aizen.Core.InfoAccessor.Middlewares
             userInfo = new AizenUserInfo
             {
                 UserId = long.Parse(jwtToken.Claims.First(c => c.Type == "Id").Value),
-                CompanyId = long.Parse(jwtToken.Claims.First(c => c.Type == "CompanyId").Value),
+                ApplicationId = long.Parse(jwtToken.Claims.First(c => c.Type == "ApplicationId").Value),
                 TenantId = long.Parse(jwtToken.Claims.First(c => c.Type == "TenantId").Value),
+                RoleId = long.Parse(jwtToken.Claims.First(x => x.Type == "RoleId").Value),
                 PhoneNumber = jwtToken.Claims.First(c => c.Type == JwtRegisteredClaimNames.Sub).Value,
-                RoleId = long.Parse(jwtToken.Claims.First(x => x.Type == "RoleId").Value)
             };
 
             return true;

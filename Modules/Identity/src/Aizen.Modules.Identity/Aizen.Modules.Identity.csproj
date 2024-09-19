@@ -6,9 +6,19 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.4" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-  </ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\Core\Starter\src\Aizen.Core.Starter\Aizen.Core.Starter.csproj" />
+		<ProjectReference Include="..\Aizen.Modules.Identity.Application\Aizen.Modules.Identity.Application.csproj" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.7">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
+	</ItemGroup>
+
 
 </Project>

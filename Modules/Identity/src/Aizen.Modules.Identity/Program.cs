@@ -1,44 +1,23 @@
-var builder = WebApplication.CreateBuilder(args);
+using Aizen.Core.Domain.Abstraction.Extention;
+using Aizen.Core.InfoAccessor.Abstraction;
+using Aizen.Core.Infrastructure.UnitOfWork.Extention;
+using Aizen.Core.Starter;
+using Aizen.Modules.Identity.Repository.Context;
+using Microsoft.EntityFrameworkCore;
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+var builder = AizenApplicationBuilder.CreateBuilder(new AizenAppInfo
+{
+    Name = "Identity",
+    Type = AppType.Operation,
+    TypeInclude = {AppType.Api,AppType.Worker,AppType.Scheduler}
+}, args);
 
+builder.Services.AddAizenUnitOfWork<AizenIdentityDbContext>(builder.Configuration, "Identity", options =>
+{
+    options.UseMigration = true;
+    options.MigrationAssembly = "Aizen.Modules.Identity.Repository";
+});
+
+builder.Services.Configure<ApplicationSettings>(builder.Configuration.GetSection(nameof(ApplicationSettings)));
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseHttpsRedirection();
-
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
-
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
