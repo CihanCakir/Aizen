@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+
+  <ItemGroup>
+		<ProjectReference Include="..\..\..\..\Core\Api\src\Aizen.Core.Api\Aizen.Core.Api.csproj" />
+		<ProjectReference Include="..\..\..\..\Core\Messagebus\src\Aizen.Core.Messagebus\Aizen.Core.Messagebus.csproj" />
+		<ProjectReference Include="..\..\..\..\Core\RemoteCall\src\Aizen.Core.RemoteCall\Aizen.Core.RemoteCall.csproj" />
+		<ProjectReference Include="..\..\..\..\Core\Scheduler\src\Aizen.Core.Scheduler.Abstraction\Aizen.Core.Scheduler.Abstraction.csproj" />
+	</ItemGroup>
+
 </Project>

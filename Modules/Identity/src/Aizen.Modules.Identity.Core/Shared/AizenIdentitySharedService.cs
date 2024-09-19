@@ -36,7 +36,7 @@ namespace Aizen.Modules.Identity.Core.Shared
                 x.DeviceId == request.DeviceId && x.CreateDate.Value.Date == DateTime.Now.Date && x.IsActive == true);
 
             if (deviceCount != null)
-                throw new MetropolBusinessException((int)MetropolErrorCode.CurrentDeviceHasBeenLockup);
+                throw new AizenBusinessException((int)AizenErrorCode.CurrentDeviceHasBeenLockup);
 
             var currentDeviceLogins = await (await _unitOfWork.GetRepository<UserApplicationLoginTokenEntity>().GetAllAsync(x =>
                     x.MobileDeviceId == request.DeviceId && x.CreateDate.Value.Date == DateTime.Now.Date))
@@ -57,7 +57,7 @@ namespace Aizen.Modules.Identity.Core.Shared
                         ipAddress: _infoAccessor.DeviceInfoAccessor.DeviceInfo.IpAddress,
                         deviceTypeId: int.Parse(_contextAccessor.HttpContext.Request.Headers["x-client-platform"])));
                 await _unitOfWorkForUser.SaveChangesAsync();
-                throw new MetropolBusinessException((int)MetropolErrorCode.CurrentDeviceHasBeenLockup)
+                throw new AizenBusinessException((int)AizenErrorCode.CurrentDeviceHasBeenLockup)
                 { IsRollback = false };
             }
         }

@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+		<ProjectReference Include="..\Aizen.Modules.DataStore.Repository\Aizen.Modules.DataStore.Repository.csproj" />
+	</ItemGroup>
+
 </Project>

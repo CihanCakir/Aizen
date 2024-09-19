@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+
+  <ItemGroup>
+		<ProjectReference Include="..\Aizen.Modules.DataStore.Abstraction\Aizen.Modules.DataStore.Abstraction.csproj" />
+		<ProjectReference Include="..\..\..\..\Core\Domain\src\Aizen.Core.Domain\Aizen.Core.Domain.csproj" />
+	</ItemGroup>
+
 </Project>
