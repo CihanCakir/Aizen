@@ -15,6 +15,12 @@ namespace Aizen.Modules.Identity.Domain.Entities
         public long RoleTypeId { get; set; }
         public virtual AizenRoleTypeEntity RoleType { get; set; }
 
+
+
+        public long ApplicationId { get; set; }
+        public virtual ApplicationEntity Application { get; set; }
+
+
         public virtual ICollection<AizenUserEntity> Users { get; set; }
 
         public bool IsDefault { get; set; }

@@ -12,5 +12,9 @@ public class AizenUserEntity : IdentityUser<long>
     public virtual AizenRoleEntity Role { get; set; }
     
     public virtual ICollection<UserApplicationProfileEntity>? ApplicationProfiles { get; set; }
+
+
+
+    public static AizenUserEntity Create(string name,string surname)
 }
 

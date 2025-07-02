@@ -41,6 +41,7 @@ namespace Aizen.Modules.Identity.Repository.Context
         public DbSet<UserApplicationProfileEntity> UserApplicationProfiles { get; set; }
         public DbSet<UserApplicationBlockEntity> UserApplicationBlocks { get; set; }
         public DbSet<UserApplicationReportEntity> UserApplicationReports { get; set; }
+        public DbSet<UserApplicationReferenceEntity> UserApplicationReferences { get; set; }
         #endregion
 
 

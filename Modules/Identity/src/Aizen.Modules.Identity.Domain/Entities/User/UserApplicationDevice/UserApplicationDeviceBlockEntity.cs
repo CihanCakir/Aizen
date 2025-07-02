@@ -16,7 +16,10 @@ namespace Aizen.Modules.Identity.Domain.Entities
         public DateTime? CreateDate { get; set; }
         public DateTime? ModifyDate { get; set; }
 
-        public static UserApplicationDeviceBlockEntity CreateEntity(string deviceName, string deviceId, string ipAddress, int? deviceTypeId = null)
+        public long ApplicationId { get; set; }
+        public ApplicationEntity Application { get; set; }
+
+        public static UserApplicationDeviceBlockEntity CreateEntity(string deviceName, string deviceId, string ipAddress, long applicationId ,int? deviceTypeId = null )
         {
             return new UserApplicationDeviceBlockEntity
             {
@@ -25,6 +28,7 @@ namespace Aizen.Modules.Identity.Domain.Entities
                 IpAddress = ipAddress,
                 DeviceTypeId = deviceTypeId,
                 CreateDate = DateTime.Now,
+                ApplicationId = applicationId,
                 IsActive = true,
             };
         }

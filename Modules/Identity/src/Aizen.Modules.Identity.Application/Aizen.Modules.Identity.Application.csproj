@@ -13,5 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Aizen.Modules.Identity.Repository\Aizen.Modules.Identity.Repository.csproj" />
+        <ProjectReference Include="..\Aizen.Modules.Identity.Core\Aizen.Modules.Identity.Core.csproj" />
+
   </ItemGroup>
 </Project>

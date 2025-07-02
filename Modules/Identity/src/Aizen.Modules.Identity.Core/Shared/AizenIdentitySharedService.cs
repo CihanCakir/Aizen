@@ -1,5 +1,7 @@
+using Aizen.Core.Api.Middleware;
 using Aizen.Core.Cache.Abstraction;
 using Aizen.Core.InfoAccessor.Abstraction;
+using Aizen.Core.Infrastructure.Exception;
 using Aizen.Core.UnitOfWork.Abstraction;
 using Aizen.Modules.Identity.Abstraction.Dto.Authentication;
 using Aizen.Modules.Identity.Domain.Entities;
@@ -33,7 +35,7 @@ namespace Aizen.Modules.Identity.Core.Shared
         {
 
             var deviceCount = await _unitOfWork.GetRepository<UserApplicationDeviceBlockEntity>().FirstOrDefaultAsync(x =>
-                x.DeviceId == request.DeviceId && x.CreateDate.Value.Date == DateTime.Now.Date && x.IsActive == true);
+                x.DeviceId == request.DeviceId && x.ApplicationId == request.ApplicationId && x.CreateDate.Value.Date == DateTime.Now.Date && x.IsActive == true);
 
             if (deviceCount != null)
                 throw new AizenBusinessException((int)AizenErrorCode.CurrentDeviceHasBeenLockup);
@@ -55,8 +57,9 @@ namespace Aizen.Modules.Identity.Core.Shared
                         deviceName: _infoAccessor.DeviceInfoAccessor.DeviceInfo.Brand,
                         deviceId: request.DeviceId,
                         ipAddress: _infoAccessor.DeviceInfoAccessor.DeviceInfo.IpAddress,
-                        deviceTypeId: int.Parse(_contextAccessor.HttpContext.Request.Headers["x-client-platform"])));
-                await _unitOfWorkForUser.SaveChangesAsync();
+                        applicationId: _infoAccessor.ClientInfoAccessor.ClientInfo.ApplicationId,
+                        deviceTypeId: int.Parse(_infoAccessor.DeviceInfoAccessor.DeviceInfo.OsType.ToString())));
+                await _unitOfWork.SaveChangesAsync();
                 throw new AizenBusinessException((int)AizenErrorCode.CurrentDeviceHasBeenLockup)
                 { IsRollback = false };
             }

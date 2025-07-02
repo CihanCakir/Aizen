@@ -5,6 +5,7 @@ namespace Aizen.Core.Domain;
 
 public interface IAizenEntity
 {
+
 }
 
 public abstract class AizenEntityWithApproval : AizenEntityWithAudit
@@ -64,7 +65,7 @@ public abstract class AizenEntityWithAudit : AizenEntity
 
 public abstract class AizenEntity : IAizenEntity
 {
-    public int Id { get; set; }
+    public long Id { get; set; }
     public bool IsDeleted { get; set; }
 
     private List<IAizenDomainEvent> _domainEvents;

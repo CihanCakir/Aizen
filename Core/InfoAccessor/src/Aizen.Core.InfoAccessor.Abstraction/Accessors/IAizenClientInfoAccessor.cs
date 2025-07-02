@@ -12,6 +12,7 @@ namespace Aizen.Core.InfoAccessor.Abstraction
     {
         public static AizenClientInfo Unknown { get; } = new AizenClientInfo();
         public InfoLifeCycle LifeCycle => InfoLifeCycle.Scoped;
+        public long ApplicationId { get; set; }
 
         public string RequestId { get; set; }
 
