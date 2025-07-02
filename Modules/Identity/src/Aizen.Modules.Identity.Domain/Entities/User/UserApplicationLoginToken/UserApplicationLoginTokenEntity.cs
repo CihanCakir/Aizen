@@ -12,12 +12,12 @@ public class UserApplicationLoginTokenEntity : AizenEntityWithAudit
 
 
     public long DeviceId { get; set; }
-    public UserApplicationDeviceEntity? Device { get; set; }
+    public virtual UserApplicationDeviceEntity? Device { get; set; }
 
     public long ApplicationId { get; set; }
-    public ApplicationEntity? Application { get; set; }
+    public virtual ApplicationEntity? Application { get; set; }
 
     public long ProfileId { get; set; }
-    public UserApplicationProfileEntity? Profile { get; set; }
+    public virtual UserApplicationProfileEntity? Profile { get; set; }
 
 }

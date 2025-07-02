@@ -12,9 +12,9 @@ namespace Aizen.Modules.Identity.Domain.Entities
         public bool IsActive { get; set; }
 
         public virtual ICollection<ApplicationCountryPriceEntity>? CountryPrices { get; set; }
-        public ICollection<ApplicationFeatureMappingEntity>? PackageFeatures { get; set; }
+        public virtual ICollection<ApplicationFeatureMappingEntity>? PackageFeatures { get; set; }
 
         public long ApplicationId { get; set; }
-        public ApplicationEntity? Application { get; set; }
+        public virtual ApplicationEntity? Application { get; set; }
     }
 }

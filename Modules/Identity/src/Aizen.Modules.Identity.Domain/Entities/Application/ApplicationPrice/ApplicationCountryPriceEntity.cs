@@ -18,13 +18,13 @@ namespace Aizen.Modules.Identity.Domain.Entities
 
 
         public long? PackageId { get; set; }
-        public ApplicationPackageEntity? Package { get; set; }
+        public virtual  ApplicationPackageEntity? Package { get; set; }
 
         public long? FeatureId { get; set; }
-        public ApplicationPackageFeatureBundleEntity? Feature { get; set; }
+        public virtual ApplicationPackageFeatureBundleEntity? Feature { get; set; }
 
         public long? FeatureBundleId { get; set; }
-        public ApplicationPackageFeatureBundleEntity? FeatureBundle { get; set; }
+        public virtual ApplicationPackageFeatureBundleEntity? FeatureBundle { get; set; }
 
         public virtual ICollection<ApplicationPriceHistoryEntity>? PriceHistories { get; set; }
     }

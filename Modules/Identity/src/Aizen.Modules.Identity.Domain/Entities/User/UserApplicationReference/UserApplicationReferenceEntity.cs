@@ -13,12 +13,12 @@ namespace Aizen.Modules.Identity.Domain.Entities
         public string? ReferenceDeepLink { get; set; }
 
         public long? TargetProfileId { get; set; }
-        public UserApplicationProfileEntity? TargetProfile { get; set; }
+        public virtual UserApplicationProfileEntity? TargetProfile { get; set; }
 
         public long OwnerProfileId { get; set; }
-        public UserApplicationProfileEntity OwnerProfile { get; set; }
+        public virtual UserApplicationProfileEntity OwnerProfile { get; set; }
 
         public long ApplicationId { get; set; }
-        public ApplicationEntity Application { get; set; }
+        public virtual ApplicationEntity Application { get; set; }
     }
 }

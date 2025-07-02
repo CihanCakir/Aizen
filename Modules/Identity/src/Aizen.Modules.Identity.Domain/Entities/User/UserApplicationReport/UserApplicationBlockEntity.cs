@@ -13,11 +13,11 @@ public class UserApplicationBlockEntity : AizenEntityWithAudit
 
 
     public long ProfileId { get; set; }
-    public UserApplicationProfileEntity? Profile { get; set; }
+    public virtual UserApplicationProfileEntity? Profile { get; set; }
 
     public long ApplicationId { get; set; }
-    public ApplicationEntity? Application { get; set; }
+    public virtual ApplicationEntity? Application { get; set; }
 
     public long RuleId { get; set; }
-    public ApplicationRuleEntity? Rule { get; set; }
+    public virtual ApplicationRuleEntity? Rule { get; set; }
 }

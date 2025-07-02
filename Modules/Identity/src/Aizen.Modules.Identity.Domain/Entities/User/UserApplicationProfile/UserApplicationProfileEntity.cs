@@ -15,12 +15,12 @@ public class UserApplicationProfileEntity : AizenEntityWithAudit
     public ApplicationAccountVerificationStatu VerificationStatu { get; set; }
 
     public  long ApplicationStatuId { get; set; }
-    public  UserApplicationStatuEntity? ApplicationStatus { get; set; }
+    public virtual  UserApplicationStatuEntity? ApplicationStatus { get; set; }
     public long ApplicationId { get; set; }
-    public ApplicationEntity? Application { get; set; }
+    public virtual ApplicationEntity? Application { get; set; }
 
     public long UserId { get; set; }
-    public AizenUserEntity? User { get; set; }
+    public virtual AizenUserEntity? User { get; set; }
 
 
     public virtual ICollection<UserApplicationDeviceEntity>? ApplicationDevices { get; set; }

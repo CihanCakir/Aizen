@@ -12,13 +12,17 @@ namespace Aizen.Modules.Identity.Domain.Entities
         public string Description { get; set; }
         public string ResourceName { get; set; }
         public string ResourceDescription { get; set; }
-       
+
         public bool IsActive { get; set; }
         public double DurationInMinutes { get; set; }
-       
-        public virtual ICollection<ApplicationCountryPriceEntity>? BaseCountryPrices { get; set; }
+
 
         public long ApplicationId { get; set; }
-        public ApplicationEntity? Application { get; set; }
+        public virtual ApplicationEntity? Application { get; set; }
+        
+
+
+        public virtual ICollection<ApplicationCountryPriceEntity>? BaseCountryPrices { get; set; }
+
     }
 }

@@ -11,7 +11,7 @@ namespace Aizen.Modules.Identity.Domain.Entities
         public bool IsForAdult { get; set; }
         public int? AgeLimit { get; set; }
         public long TenantId { get; set; }
-        public TenantEntity? Tenant { get; set; }
+        public virtual TenantEntity? Tenant { get; set; }
 
         public virtual ICollection<ApplicationRuleEntity>? Rules { get; set; }
         public virtual ICollection<ApplicationPackageEntity>? Packages { get; set; }

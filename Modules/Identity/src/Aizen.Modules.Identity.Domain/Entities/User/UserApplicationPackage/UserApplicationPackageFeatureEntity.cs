@@ -9,9 +9,9 @@ namespace Aizen.Modules.Identity.Domain.Entities
     public class UserApplicationPackageFeatureEntity : AizenEntityWithAudit
     {
     public long ProfileId { get; set; }
-    public UserApplicationProfileEntity? Profile { get; set; }
+    public virtual UserApplicationProfileEntity? Profile { get; set; }
         public long FeatureId { get; set; }
-        public ApplicationPackageFeatureEntity? Feature { get; set; }
+        public virtual ApplicationPackageFeatureEntity? Feature { get; set; }
         public int Quantity { get; set; }
         public DateTime PurchaseDate { get; set; }
         public bool IsActive { get; set; }

@@ -13,10 +13,10 @@ public class UserApplicationDeviceEntity : AizenEntityWithAudit
     public DateTime? LastLoginDate { get; set; }
 
     public long ApplicationId { get; set; }
-    public ApplicationEntity? Application { get; set; }
+    public virtual ApplicationEntity? Application { get; set; }
 
     public long ProfileId { get; set; }
-    public UserApplicationProfileEntity? Profile { get; set; }
+    public virtual  UserApplicationProfileEntity? Profile { get; set; }
 
 
     public virtual ICollection<UserApplicationLoginTokenEntity>? LoginTokens { get; set; }

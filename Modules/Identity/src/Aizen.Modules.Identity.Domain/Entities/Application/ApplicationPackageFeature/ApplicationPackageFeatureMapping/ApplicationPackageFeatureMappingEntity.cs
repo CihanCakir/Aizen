@@ -5,9 +5,9 @@ namespace Aizen.Modules.Identity.Domain.Entities
     public class ApplicationFeatureMappingEntity : AizenEntityWithAudit
     {
         public long PackageId { get; set; }
-        public ApplicationPackageEntity Package { get; set; }
+        public virtual ApplicationPackageEntity Package { get; set; }
 
         public long FeatureId { get; set; }
-        public ApplicationPackageFeatureEntity PackageFeature { get; set; }
+        public virtual ApplicationPackageFeatureEntity PackageFeature { get; set; }
     }
 }

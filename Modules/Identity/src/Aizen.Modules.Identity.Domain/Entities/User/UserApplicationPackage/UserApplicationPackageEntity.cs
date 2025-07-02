@@ -11,9 +11,9 @@ public class UserApplicationPackageEntity : AizenEntityWithAudit
     public DateTime EndDate { get; set; }
     public bool IsActive { get; set; }
     public long PackageId { get; set; }
-    public ApplicationPackageEntity? Package { get; set; }
+    public virtual ApplicationPackageEntity? Package { get; set; }
     public long ApplicationId { get; set; }
-    public ApplicationEntity? Application { get; set; }
+    public virtual ApplicationEntity? Application { get; set; }
     public long ProfileId { get; set; }
-    public UserApplicationProfileEntity? Profile { get; set; }
+    public virtual UserApplicationProfileEntity? Profile { get; set; }
 }

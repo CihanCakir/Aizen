@@ -12,17 +12,15 @@ public class ApplicationPackageFeatureBundleEntity : AizenEntityWithAudit
     public int Quantity { get; set; }
 
     public long? FeatureId { get; set; }
-    public ApplicationPackageFeatureEntity? Feature { get; set; }
+    public virtual ApplicationPackageFeatureEntity? Feature { get; set; }
 
 
 
     public long ApplicationId { get; set; }
-    public ApplicationEntity? Application { get; set; }
+    public virtual ApplicationEntity? Application { get; set; }
 
 
-    public virtual ICollection<ApplicationCountryPriceEntity>? BaseCountryPrices { get; set; }
+    public virtual ICollection<ApplicationCountryPriceEntity>? ApplicationCountryPrices { get; set; }
 
-
-        
 
 }

@@ -9,7 +9,7 @@ namespace Aizen.Modules.Identity.Domain.Entities
     public class ApplicationPriceHistoryEntity : AizenEntityWithAudit
     {
         public long CountryPricingId { get; set; }
-        public ApplicationCountryPriceEntity CountryPricing { get; set; }
+        public virtual ApplicationCountryPriceEntity CountryPricing { get; set; }
         public decimal OldPrice { get; set; }
         public decimal NewPrice { get; set; }
     }

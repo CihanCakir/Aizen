@@ -12,5 +12,5 @@ public class ApplicationRuleEntity : AizenEntityWithAudit
 
 
     public long ApplicationId { get; set; }
-    public ApplicationEntity? Application { get; set; }
+    public virtual ApplicationEntity? Application { get; set; }
 }
