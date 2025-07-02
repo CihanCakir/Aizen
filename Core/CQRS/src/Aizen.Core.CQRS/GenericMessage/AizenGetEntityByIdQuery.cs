@@ -6,5 +6,5 @@ namespace Aizen.Core.CQRS.GenericMessage;
 public class AizenGetEntityByIdQuery<TEntity> : AizenQuery<TEntity>
     where TEntity : AizenEntity
 {
-    public int Id { get; set; }
+    public long Id { get; set; }
 }
