@@ -1,3 +1,4 @@
+using System.Data.Entity;
 using Aizen.Core.Api.Middleware;
 using Aizen.Core.Auth.Abstraction;
 using Aizen.Core.Cache.Abstraction;
@@ -11,8 +12,7 @@ using Aizen.Modules.Identity.Core.Cache;
 using Aizen.Modules.Identity.Domain.Entities;
 using Aizen.Modules.Identity.Repository.Context;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace Aizen.Modules.Identity.Application.Authentication.Command
 {
@@ -35,49 +35,63 @@ namespace Aizen.Modules.Identity.Application.Authentication.Command
             _tokenHelper = aizenTokenHelper;
             _cache = cache;
         }
-        public override async Task<AizenLoginDto?> Handle(RegisterCommand request, CancellationToken cancellationToken)
-        {
 
-            var applicationCache = await _cache.GetAsync<RedisGeneralResponse<ApplicationCacheRuleItem>>(string.Concat(cacheKey, ":", _infoAccessor.ClientInfoAccessor.ClientInfo.ApplicationId), cancellationToken);
+public override async Task<AizenLoginDto?> Handle(RegisterCommand request, CancellationToken cancellationToken)
+{
+    var appId = _infoAccessor.ClientInfoAccessor.ClientInfo.ApplicationId;
+    var applicationCache = await _cache.GetAsync<RedisGeneralResponse<ApplicationCacheRuleItem>>($"{cacheKey}:{appId}", cancellationToken);
 
-            if (applicationCache == null) return null; // CHECK APPLICATION FROM CACHE
+    if (applicationCache == null)
+        throw new AizenBusinessException((int)AizenErrorCode.ApplicationNotFound) { IsRollback = false };
 
-            // AGE & ADULT CONTROL
-            if (applicationCache.Value.Application.AgeLimit.HasValue)
-            {
-                int age = DateTime.Now.Year - request.BirthDate.Value.Year;
+    var app = applicationCache.Value.Application;
 
-                if (DateTime.Now.Month < request.BirthDate.Value.Month || (DateTime.Now.Month == request.BirthDate.Value.Month && DateTime.Now.Day < request.BirthDate.Value.Day))
-                {
-                    age--;
-                }
-                if (age > applicationCache.Value.Application.AgeLimit) throw new AizenBusinessException((int)AizenErrorCode.CurrentDeviceHasBeenLockup) // AGE_LIMIT
-                { IsRollback = false };
-                if (applicationCache.Value.Application.IsForAdult && age < 18) throw new AizenBusinessException((int)AizenErrorCode.CurrentDeviceHasBeenLockup) // ADULT_CONTROL
-                { IsRollback = false };
-            }
+    #region [AGE & ADULT CONTROL]
+    if (app.AgeLimit.HasValue && request.BirthDate.HasValue)
+    {
+        int age = CalculateAge(request.BirthDate.Value);
+        
+        if (age > app.AgeLimit)
+            throw new AizenBusinessException((int)AizenErrorCode.AgeLimitExceeded) { IsRollback = false };
 
-            // COUNTRY CONTROL
-            var selectedCountry = applicationCache.Value.ValidCountries.Content.Countries.FirstOrDefault(country => country.Code == request.CountryCode);
+        if (app.IsForAdult && age < 18)
+            throw new AizenBusinessException((int)AizenErrorCode.AdultContentRestricted) { IsRollback = false };
+    }
+    #endregion
 
-            if (selectedCountry == null) throw new AizenBusinessException((int)AizenErrorCode.CurrentDeviceHasBeenLockup) { IsRollback = false }; // COUNTRY_CONTROL
+    #region [COUNTRY CONTROL]
+    var selectedCountry = applicationCache.Value.ValidCountries.Content.Countries
+        .FirstOrDefault(x => x.Code == request.CountryCode);
 
-            #region [SEND_QUE_CONTROL]
-            // PHONE_REGISTER_OTHER_APPLICATON_CONTROL
-            var checkUser = await _unitOfWork.GetRepository<AizenUserEntity>().GetAllAsync(predicate: x => x.PhoneNumber == request.PhoneNumber);
+    if (selectedCountry == null)
+        throw new AizenBusinessException((int)AizenErrorCode.CountryNotAllowed) { IsRollback = false };
+    #endregion
 
-            if (checkUser.Any())
-            {
+    #region [DUPLICATE PHONE CONTROL]
+    var usersWithSamePhone = await _unitOfWork.GetRepository<AizenUserEntity>()
+        .GetAllAsync(
+            predicate: x => x.PhoneNumber == request.PhoneNumber,
+            include: z => (IIncludableQueryable<AizenUserEntity, object>)z.Include(y => y.ApplicationProfiles)
+        );
 
-            }
-            #endregion
+    if (usersWithSamePhone.Any(x => x.ApplicationProfiles!.Select(z=> z.ApplicationId).ToList().Contains(appId)))
+        throw new AizenBusinessException((int)AizenErrorCode.PhoneAlreadyRegistered) { IsRollback = false };
 
-            // var user = AizenUserEntity.
+    #endregion
+
+    // Buraya kullanıcı oluşturma, kayıt token üretme, sms gönderme, oturum başlatma gibi işlemler eklenecek.
+
 
 
 
             throw new NotImplementedException();
         }
+        private int CalculateAge(DateTime birthDate)
+        {
+            var today = DateTime.Today;
+            var age = today.Year - birthDate.Year;
+            if (birthDate.Date > today.AddYears(-age)) age--;
+            return age;
+        }
     }
-
 }

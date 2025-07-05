@@ -2,7 +2,12 @@ namespace Aizen.Core.Api.Middleware;
 
 public enum AizenErrorCode
 {
-   CurrentDeviceHasBeenLockup= 1
+    ApplicationNotFound = 100,
+    AgeLimitExceeded = 101,
+    AdultContentRestricted = 102,
+    CountryNotAllowed = 103,
+    PhoneAlreadyRegistered = 104,
+    PhoneUsedInOtherApplication = 105,   
 }
 
 public class ErrorDescriptionModel
